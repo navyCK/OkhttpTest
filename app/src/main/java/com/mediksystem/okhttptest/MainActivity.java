@@ -1,14 +1,20 @@
 package com.mediksystem.okhttptest;
 
+import android.app.Dialog;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.View;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mediksystem.okhttptest.databinding.ActivityMainBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,9 +22,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import okhttp3.Call;
@@ -27,19 +37,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
+
 
 public class MainActivity extends JsonUtil {
+    private static final String TAG = "라이프사이클";
 
-    ArrayList<String> allList = new ArrayList<>();
-    ArrayList<String> idList = new ArrayList<>();
-    ArrayList<String> titleList = new ArrayList<>();
-    ArrayList<String> userIdList = new ArrayList<>();
-    ArrayList<String> bodyList = new ArrayList<>();
+    private ActivityMainBinding binding;
 
-    String TEST_URL = "https://jsonplaceholder.typicode.com/posts";
-
-    TextView textView;
-    Button button, button2, button3, button4;
+    String POST_URL = "https://jsonplaceholder.typicode.com/posts";
 
     JSONObject noticeObject;
     String str_response;
@@ -49,31 +55,22 @@ public class MainActivity extends JsonUtil {
     ProgressDialog customProgressDialog;
 
     RecyclerView recyclerView = null;
-    SimpleTextAdapter adapter = null;
+    PostAdapter adapter = null;
     ArrayList<NoticeListViewItem> mList = new ArrayList<>();
+
+    int scrollPosition = 0;
+
+    Dialog dialog;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        Log.e(TAG, "onCreate()");
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        textView = findViewById(R.id.textView);
-        button = findViewById(R.id.button);
-        button2 = findViewById(R.id.button2);
-        button3 = findViewById(R.id.button3);
-        button4 = findViewById(R.id.button4);
-
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(TEST_URL).build();
-        convertJson(client, request);
-        setProgressDialog();
-        setTimer();
-
-        button.setOnClickListener(view -> textView.setText(str_response));
-        button2.setOnClickListener(view -> textView.setText(allList.toString()));
-        button3.setOnClickListener(view -> textView.setText(idList.toString()));
-        button4.setOnClickListener(view -> textView.setText(titleList.toString()));
 
     }
 
@@ -119,13 +116,6 @@ public class MainActivity extends JsonUtil {
                         String title = map.put("title", map).toString();
                         String body = map.put("body", map).toString();
 
-                        // 여기부터
-                        idList.add(id);
-                        userIdList.add(userId);
-                        titleList.add(title);
-                        bodyList.add(body);
-                        // 여기까지 필요없음
-
                         addItem(id, userId, title, body);
                     }
                 } catch (JSONException e) {
@@ -148,15 +138,17 @@ public class MainActivity extends JsonUtil {
     }
 
     private void setTimer() {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                recyclerView = findViewById(R.id.recyclerview);
+                recyclerView = binding.recyclerview;
                 recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), 1));
-                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
+                manager.setReverseLayout(true);
+                manager.setStackFromEnd(true);
+                recyclerView.setLayoutManager(manager);
 
-                adapter = new SimpleTextAdapter(mList);
+                adapter = new PostAdapter(mList);
                 recyclerView.setAdapter(adapter);
 
                 customProgressDialog.dismiss();
@@ -169,5 +161,82 @@ public class MainActivity extends JsonUtil {
         customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         customProgressDialog.setCancelable(false);
         customProgressDialog.show();
+    }
+
+
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart()");
+
+        mList.clear();
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(POST_URL).build();
+        convertJson(client, request);
+        setProgressDialog();
+        setTimer();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG, "onRestart()");
+        recyclerView.scrollToPosition(scrollPosition);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause()");
+        scrollPosition = ((LinearLayoutManager)recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+        Log.e("스크롤 포지션 : ", String.valueOf(scrollPosition));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop()");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy()");
+    }
+
+    @Override
+    public void onBackPressed() {
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_custom);
+        dialog.show();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Button noBtn = dialog.findViewById(R.id.noBtn);
+        Button yesBtn = dialog.findViewById(R.id.yesBtn);
+
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        yesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }
