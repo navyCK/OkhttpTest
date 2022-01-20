@@ -1,4 +1,4 @@
-package com.mediksystem.okhttptest;
+package com.mediksystem.okhttptest.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
