@@ -29,6 +29,7 @@
         <activity android:name=".activity.ProcessActivity"/>
         <activity android:name=".activity.NfcActivity"/>
         <activity android:name=".activity.CalendarActivity"/>
+        <activity android:name=".activity.Calendar2Activity"/>
     </application>
 
 </manifest>
