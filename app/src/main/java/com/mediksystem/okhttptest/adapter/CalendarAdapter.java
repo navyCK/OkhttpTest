@@ -1,7 +1,11 @@
 package com.mediksystem.okhttptest.adapter;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.mediksystem.okhttptest.R;
@@ -13,6 +17,7 @@ import com.mediksystem.okhttptest.viewmodel.CalendarViewModel;
 import com.mediksystem.okhttptest.viewmodel.EmptyViewModel;
 
 import java.util.Calendar;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -26,6 +31,12 @@ public class CalendarAdapter extends ListAdapter<Object, RecyclerView.ViewHolder
     private final int EMPTY_TYPE = 1;
     private final int DAY_TYPE = 2;
 
+    private List<Object> mCalendarList;
+
+    public void setCalendarList(List<Object> calendarList) {
+        mCalendarList = calendarList;
+        notifyDataSetChanged();
+    }
 
     public CalendarAdapter() {
         super(new DiffUtil.ItemCallback<Object>() {
@@ -40,6 +51,7 @@ public class CalendarAdapter extends ListAdapter<Object, RecyclerView.ViewHolder
                 return gson.toJson(oldItem).equals(gson.toJson(newItem));
             }
         });
+
     }
 
 
@@ -59,7 +71,9 @@ public class CalendarAdapter extends ListAdapter<Object, RecyclerView.ViewHolder
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+
         if (viewType == HEADER_TYPE) { // 날짜 타입
             CalendarHeaderBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.item_calendar_header, parent, false);
             StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) binding.getRoot().getLayoutParams();
@@ -99,6 +113,12 @@ public class CalendarAdapter extends ListAdapter<Object, RecyclerView.ViewHolder
                 model.setCalendar((Calendar) item);
             }
             holder.setViewModel(model);
+            holder.binding.stateView.setText("일반");
+            holder.binding.startTimeView.setText("09:00");
+            holder.binding.finishTimeView.setText("18:00");
+            holder.binding.todo01View.setVisibility(View.VISIBLE);
+            holder.binding.todo01TextView.setText("할일 1입니다.");
+
         }
     }
 
