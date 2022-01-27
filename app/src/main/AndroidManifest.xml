@@ -30,6 +30,8 @@
         <activity android:name=".activity.NfcActivity"/>
         <activity android:name=".activity.CalendarActivity"/>
         <activity android:name=".activity.Calendar2Activity"/>
+        <activity android:name=".activity.Calendar3Activity"/>
+        <activity android:name=".activity.WebViewActivity"/>
     </application>
 
 </manifest>
