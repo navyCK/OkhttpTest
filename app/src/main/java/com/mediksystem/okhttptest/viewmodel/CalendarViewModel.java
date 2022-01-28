@@ -1,6 +1,5 @@
 package com.mediksystem.okhttptest.viewmodel;
 
-import android.widget.TextView;
 
 import com.mediksystem.okhttptest.data.TSLiveData;
 
