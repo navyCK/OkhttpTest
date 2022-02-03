@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data class="CalendarHeaderBinding">
 
@@ -18,6 +19,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             setCalendarHeaderText="@{model.mHeaderDate}"
+            tools:text="2000년 01월"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
