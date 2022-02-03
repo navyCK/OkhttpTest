@@ -101,6 +101,23 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        binding.button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, Calendar3Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, WebViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 
