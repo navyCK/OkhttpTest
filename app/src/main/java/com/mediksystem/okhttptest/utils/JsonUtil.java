@@ -1,4 +1,4 @@
-package com.mediksystem.okhttptest;
+package com.mediksystem.okhttptest.utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
