@@ -1,4 +1,4 @@
-package com.mediksystem.okhttptest;
+package com.mediksystem.okhttptest.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,18 +6,19 @@ import android.graphics.Color;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.mediksystem.okhttptest.item.PostItem;
+import com.mediksystem.okhttptest.R;
+
 import java.util.ArrayList;
-import java.util.Collections;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
-    private ArrayList<NoticeListViewItem> mData = null ;
+    private ArrayList<PostItem> mData = null ;
     private SparseBooleanArray mSelectedItems = new SparseBooleanArray(0);
 
 
@@ -42,7 +43,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
-                        NoticeListViewItem item = mData.get(pos);
+                        PostItem item = mData.get(pos);
 
 
 
@@ -77,7 +78,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 public boolean onLongClick(View view) {
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
-                        NoticeListViewItem item = mData.get(pos);
+                        PostItem item = mData.get(pos);
 
                         if (mSelectedItems.get(pos, false)) {
                             mSelectedItems.put(pos, false);
@@ -100,7 +101,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    PostAdapter(ArrayList<NoticeListViewItem> list) {
+    public PostAdapter(ArrayList<PostItem> list) {
         mData = list ;
     }
 
@@ -110,7 +111,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         Context context = parent.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
 
-        View view = inflater.inflate(R.layout.recyclerview_item, parent, false) ;
+        View view = inflater.inflate(R.layout.recyclerview_post_item, parent, false) ;
         PostAdapter.ViewHolder vh = new PostAdapter.ViewHolder(view) ;
 
         return vh ;
@@ -119,14 +120,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     // onBindViewHolder() - position 에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
     @Override
     public void onBindViewHolder(PostAdapter.ViewHolder holder, int position) {
-        NoticeListViewItem item = mData.get(position) ;
+        PostItem item = mData.get(position) ;
         holder.id.setText(item.getId()) ;
         holder.userId.setText(item.getUserId());
         holder.title.setText(item.getTitle());
         holder.body.setText(item.getBody());
 
         if (mSelectedItems.get(position, false)) {
-            holder.itemView.setBackgroundColor(Color.GRAY);
+            holder.itemView.setBackgroundColor(Color.YELLOW);
         } else {
             holder.itemView.setBackgroundColor(Color.WHITE);
         }
