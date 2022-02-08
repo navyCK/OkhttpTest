@@ -46,10 +46,8 @@
     </LinearLayout>
 
 
-    <TextView
-        android:gravity="center"
-        android:text="id"
-        android:id="@+id/idView"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="75dp"
         android:layout_height="75dp" />
 
