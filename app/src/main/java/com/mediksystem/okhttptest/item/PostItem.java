@@ -1,14 +1,14 @@
-package com.mediksystem.okhttptest;
+package com.mediksystem.okhttptest.item;
 
 
-public class NoticeListViewItem {
+public class PostItem {
     private String userId;
     private String id;
     private String title;
     private String body;
 
 
-    public NoticeListViewItem() {
+    public PostItem() {
         this.userId = userId;
         this.id = id;
         this.title = title;
