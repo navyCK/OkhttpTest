@@ -8,6 +8,7 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mediksystem.okhttptest.R;
 
@@ -33,6 +34,11 @@ public class NfcActivity extends Activity {
         tagDateView = findViewById(R.id.tagDateView);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
+        if (nfcAdapter == null) {
+            Toast.makeText(getApplicationContext(), "nfc not support", Toast.LENGTH_SHORT).show();
+        }
+
         Intent intent = new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
     }
@@ -41,6 +47,8 @@ public class NfcActivity extends Activity {
     protected void onPause() {
         if (nfcAdapter != null) {
             nfcAdapter.disableForegroundDispatch(this);
+        } else {
+            Toast.makeText(getApplicationContext(), "nfc not support", Toast.LENGTH_SHORT).show();
         }
         super.onPause();
     }
@@ -50,6 +58,8 @@ public class NfcActivity extends Activity {
         super.onResume();
         if (nfcAdapter != null) {
             nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null);
+        } else {
+            Toast.makeText(getApplicationContext(), "nfc not support", Toast.LENGTH_SHORT).show();
         }
     }
 
