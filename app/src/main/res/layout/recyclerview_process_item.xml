@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="left|center"
+            android:layout_weight="1.3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/SubUniquenumber"
+                android:text="SubUniquenumber"
+                android:layout_margin="5dp"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="left|center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/ProcessSubType"
+                android:text="ProcessSubType"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="left|center"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/BeginTime"
+                    android:text="BeginTime"
+                    android:layout_margin="5dp"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints" />
+                <TextView
+                    android:id="@+id/FinishTime"
+                    android:text="FinishTime"
+                    android:layout_margin="5dp"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/RegistrationTime"
+                    android:text="RegistrationTime"
+                    android:layout_margin="5dp"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints" />
+                <TextView
+                    android:id="@+id/ModificationTime"
+                    android:text="ModificationTime"
+                    android:layout_margin="5dp"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+</layout>
