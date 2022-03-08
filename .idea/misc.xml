@@ -3,18 +3,51 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/paging/src/main/res/drawable/ic_launcher_background.xml" value="0.18489583333333334" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable-v21/ripple_custom.xml" value="0.38229166666666664" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/alert_white_border.xml" value="0.22083333333333333" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/circle.xml" value="0.38229166666666664" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/empty_divider.xml" value="0.38229166666666664" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/ic_arrow_left.xml" value="0.38229166666666664" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/ic_arrow_right.xml" value="0.38229166666666664" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/progress_bg.xml" value="0.38229166666666664" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/progress_image.xml" value="0.38229166666666664" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/ring.xml" value="0.38229166666666664" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/ripple_custom.xml" value="0.38229166666666664" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/ripple_effect.xml" value="0.38229166666666664" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/drawable/splash.xml" value="0.38229166666666664" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout-v21/recyclerview_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/acitivity_calendar2.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_calendar.xml" value="0.25" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_calendar2.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_calendar3.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_calendar4.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_main.xml" value="0.2046875" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_nfc.xml" value="0.21875" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_process.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_read_nfc.xml" value="0.21875" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_roboto_calendar.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/activity_webview.xml" value="0.36614583333333334" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/alert_white_border.xml" value="0.2046875" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/content_main.xml" value="0.2046875" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/dialog_custom.xml" value="0.33" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/dialog_progress.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/fragment_tab.xml" value="0.2046875" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/item_calendar_grideview.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/item_calendar_gridview.xml" value="0.1890625" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/item_calendar_header.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/item_day.xml" value="0.33" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/item_day_empty.xml" value="0.36614583333333334" />
         <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/notice_listview_item.xml" value="0.36614583333333334" />
-        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/recyclerview_item.xml" value="0.22" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/recyclerview_post_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/recyclerview_process_item.xml" value="0.33" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/roboto_calendar_day_of_the_month_layout.xml" value="0.33" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/roboto_calendar_month_layout.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/roboto_calendar_view_layout.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/layout/roboto_calendar_week_layout.xml" value="0.36614583333333334" />
+        <entry key="..\:/HerbLinker/development/android/OkhttpTest/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.38229166666666664" />
       </map>
     </option>
   </component>

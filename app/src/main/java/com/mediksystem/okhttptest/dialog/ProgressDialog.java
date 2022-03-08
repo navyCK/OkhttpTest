@@ -1,8 +1,10 @@
-package com.mediksystem.okhttptest;
+package com.mediksystem.okhttptest.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Window;
+
+import com.mediksystem.okhttptest.R;
 
 public class ProgressDialog extends Dialog
 {

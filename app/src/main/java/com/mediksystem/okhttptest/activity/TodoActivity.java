@@ -1,20 +1,19 @@
-package com.mediksystem.okhttptest;
+package com.mediksystem.okhttptest.activity;
 
-import android.app.Dialog;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.ProgressBar;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mediksystem.okhttptest.adapter.PostAdapter;
+import com.mediksystem.okhttptest.item.PostItem;
+import com.mediksystem.okhttptest.dialog.ProgressDialog;
+import com.mediksystem.okhttptest.R;
 import com.mediksystem.okhttptest.databinding.ActivityMainBinding;
+import com.mediksystem.okhttptest.utils.JsonUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,13 +21,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Map;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import okhttp3.Call;
@@ -37,15 +33,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags;
 
-
-public class MainActivity extends JsonUtil {
+public class TodoActivity extends JsonUtil {
     private static final String TAG = "라이프사이클";
 
     private ActivityMainBinding binding;
 
-    String POST_URL = "https://jsonplaceholder.typicode.com/posts";
+    private String POST_URL = "https://jsonplaceholder.typicode.com/posts";
 
     JSONObject noticeObject;
     String str_response;
@@ -56,13 +50,9 @@ public class MainActivity extends JsonUtil {
 
     RecyclerView recyclerView = null;
     PostAdapter adapter = null;
-    ArrayList<NoticeListViewItem> mList = new ArrayList<>();
+    ArrayList<PostItem> mList = new ArrayList<>();
 
     int scrollPosition = 0;
-
-    Dialog dialog;
-
-
 
 
     @Override
@@ -70,9 +60,63 @@ public class MainActivity extends JsonUtil {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "onCreate()");
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart()");
+
+        mList.clear();
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(POST_URL).build();
+        convertJson(client, request);
+        setProgressDialog();
+        setTimer();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG, "onRestart()");
+        recyclerView.scrollToPosition(scrollPosition);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause()");
+        scrollPosition = ((LinearLayoutManager)recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+        Log.e("스크롤 포지션 : ", String.valueOf(scrollPosition));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop()");
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy()");
+    }
+
+
+
+
+
+
+
+
+
 
     // json -> map
     public static Map<String, Object> getMapFromJsonObject(JSONObject jsonObj){
@@ -125,8 +169,8 @@ public class MainActivity extends JsonUtil {
         });
     }
 
-    public void addItem(String id, String userId, String title, String body) {
-        NoticeListViewItem item = new NoticeListViewItem();
+    private void addItem(String id, String userId, String title, String body) {
+        PostItem item = new PostItem();
 
         item.setId(id);
         item.setUserId(userId);
@@ -141,7 +185,7 @@ public class MainActivity extends JsonUtil {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                recyclerView = binding.recyclerview;
+                recyclerView = binding.todoRecyclerView;
                 recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), 1));
                 LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
                 manager.setReverseLayout(true);
@@ -153,7 +197,7 @@ public class MainActivity extends JsonUtil {
 
                 customProgressDialog.dismiss();
             }
-        }, 1000);
+        }, 2000);
     }
 
     private void setProgressDialog() {
@@ -167,76 +211,6 @@ public class MainActivity extends JsonUtil {
 
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.e(TAG, "onStart()");
 
-        mList.clear();
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url(POST_URL).build();
-        convertJson(client, request);
-        setProgressDialog();
-        setTimer();
-    }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.e(TAG, "onRestart()");
-        recyclerView.scrollToPosition(scrollPosition);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.e(TAG, "onResume()");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e(TAG, "onPause()");
-        scrollPosition = ((LinearLayoutManager)recyclerView.getLayoutManager()).findLastVisibleItemPosition();
-        Log.e("스크롤 포지션 : ", String.valueOf(scrollPosition));
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e(TAG, "onStop()");
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.e(TAG, "onDestroy()");
-    }
-
-    @Override
-    public void onBackPressed() {
-        dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_custom);
-        dialog.show();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        Button noBtn = dialog.findViewById(R.id.noBtn);
-        Button yesBtn = dialog.findViewById(R.id.yesBtn);
-
-        noBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-        yesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
 }

@@ -110,7 +110,6 @@
 
             <LinearLayout
                 android:id="@+id/todo01View"
-                android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:background="@color/teal_200"
                 android:layout_width="match_parent"
@@ -128,7 +127,6 @@
 
             <LinearLayout
                 android:id="@+id/todo02View"
-                android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:background="@color/purple_200"
                 android:layout_width="match_parent"
@@ -144,7 +142,6 @@
 
             <LinearLayout
                 android:id="@+id/todo03View"
-                android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:background="@color/YellowGreen"
                 android:layout_width="match_parent"
